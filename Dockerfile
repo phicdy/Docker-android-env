@@ -60,4 +60,5 @@ RUN echo no | /opt/android-sdk-linux/tools/android create avd -n uiautomator19 -
 RUN mkdir /shared
 RUN mkdir -p ~/Document/workspace && mksdcard 128M ~/Document/workspace/sdcard.img
 RUN apt-get -y install python
+RUN apt-get -y install ant
 RUN apt-get -y install vim
