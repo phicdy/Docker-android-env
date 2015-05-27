@@ -54,6 +54,7 @@ RUN wget http://dl.google.com/android/android-sdk_r24.2-linux.tgz && \
     /expect-android-update.sh build-tools-22.0.1,android-18,android-19,android-21,android-22,sys-img-armeabi-v7a-android-22,sys-img-armeabi-v7a-android-21,sys-img-armeabi-v7a-android-19,sys-img-armeabi-v7a-android-18
          
 ENV ANDROID_SDK_HOME /opt/android-sdk-linux
+ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH $PATH:/opt/android-sdk-linux/platform-tools:/opt/android-sdk-linux/tools
 RUN echo no | /opt/android-sdk-linux/tools/android create avd -n uiautomator19 -t android-19
 RUN mkdir /shared && mksdcard 128M /shared/sdcard.img
