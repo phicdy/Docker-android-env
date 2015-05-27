@@ -57,6 +57,7 @@ ENV ANDROID_SDK_HOME /opt/android-sdk-linux
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH $PATH:/opt/android-sdk-linux/platform-tools:/opt/android-sdk-linux/tools
 RUN echo no | /opt/android-sdk-linux/tools/android create avd -n uiautomator19 -t android-19
-RUN mkdir /shared && mksdcard 128M /shared/sdcard.img
+RUN mkdir /shared
+RUN mkdir -p ~/Document/workspace && mksdcard 128M ~/Document/workspace/sdcard.img
 RUN apt-get -y install python
 RUN apt-get -y install vim
