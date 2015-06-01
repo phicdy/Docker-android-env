@@ -4,18 +4,7 @@ RUN apt-get update
 
 # For add-apt-repositor in order to install Java
 RUN apt-get install -y software-properties-common
-#RUN apt-get install -y --fix-missing software-properties-common python-software-properties
-#RUN apt-get update
-#RUN add-apt-repository ppa:webupd8team/java
-#RUN apt-get update
-
-# Agree oracle license true
-#RUN echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 boolean true" | debconf-set-selections
-
 # Install Java
-#RUN apt-get -y install oracle-java8-installer
-#RUN apt-get -y install oracle-java8-set-default
-
 RUN \
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
   add-apt-repository -y ppa:webupd8team/java && \
@@ -46,8 +35,6 @@ RUN wget http://dl.google.com/android/android-sdk_r24.2-linux.tgz && \
     cd android-sdk-linux && \
     cp -a tools copy-tools && \
     /expect-android-update.sh platform-tools && \
-    ls -l && \
-    ls -l platform-tools/ && \
     ./platform-tools/adb kill-server && \
     rm -rf temp/ && \
     /expect-android-update.sh tools && \
@@ -58,7 +45,6 @@ ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH $PATH:/opt/android-sdk-linux/platform-tools:/opt/android-sdk-linux/tools
 RUN echo no | /opt/android-sdk-linux/tools/android create avd -n uiautomator19 -t android-19
 RUN mkdir /shared
-RUN mkdir -p ~/Document/workspace && mksdcard 128M ~/Document/workspace/sdcard.img
 RUN apt-get -y install python
 RUN apt-get -y install ant
 RUN apt-get -y install vim
