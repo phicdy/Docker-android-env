@@ -27,24 +27,22 @@ RUN apt-get install -y wget
 RUN apt-get update
 RUN apt-get -y install expect
 RUN apt-get -y install lib32stdc++6 
-RUN wget http://dl.google.com/android/android-sdk_r24.2-linux.tgz && \
-    mv android-sdk_r24.2-linux.tgz /opt && \
-    cd /opt && \
-    tar zxvf android-sdk_r24.2-linux.tgz && \
-    rm android-sdk_r24.2-linux.tgz && \
+RUN wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz && \
+    mv android-sdk_r24.4.1-linux.tgz /usr/local && \
+    cd /usr/local && \
+    tar zxvf android-sdk_r24.4.1-linux.tgz && \
+    rm android-sdk_r24.4.1-linux.tgz && \
     cd android-sdk-linux && \
     cp -a tools copy-tools && \
     /expect-android-update.sh platform-tools && \
     ./platform-tools/adb kill-server && \
     rm -rf temp/ && \
     /expect-android-update.sh tools && \
-    /expect-android-update.sh build-tools-22.0.1,android-18,android-19,android-21,android-22,sys-img-armeabi-v7a-android-22,sys-img-armeabi-v7a-android-21,sys-img-armeabi-v7a-android-19,sys-img-armeabi-v7a-android-18
+    /expect-android-update.sh build-tools-23.0.3,android-23,android-18,sys-img-armeabi-v7a-android-23,extra-android-m2repository,extra-google-m2repository,extra-android-support
          
-ENV ANDROID_SDK_HOME /opt/android-sdk-linux
-ENV ANDROID_HOME /opt/android-sdk-linux
-ENV PATH $PATH:/opt/android-sdk-linux/platform-tools:/opt/android-sdk-linux/tools
-RUN echo no | /opt/android-sdk-linux/tools/android create avd -n uiautomator19 -t android-19
+ENV ANDROID_SDK_HOME /usr/local/android-sdk-linux
+ENV ANDROID_HOME /usr/local/android-sdk-linux
+ENV PATH $PATH:/usr/local/android-sdk-linux/platform-tools:/usr/local/android-sdk-linux/tools
 RUN mkdir /shared
 RUN apt-get -y install python
-RUN apt-get -y install ant
 RUN apt-get -y install vim
